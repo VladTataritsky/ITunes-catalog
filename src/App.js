@@ -6,6 +6,7 @@ import ArtistAlbumsScreen from './screens/artist-albums/ArtistAlbums.container';
 import AlbumsScreen from './screens/albums/Albums';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -13,8 +14,22 @@ const Tab = createBottomTabNavigator();
 const Tabs = () => {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Artists" component={ArtistsScreen} />
-      <Tab.Screen name="Albums" component={AlbumsScreen} />
+      <Tab.Screen
+        name="Artists"
+        component={ArtistsScreen}
+        options={{
+          tabBarIcon: () => <Icon name="star" size={30} />,
+          tabBarLabelStyle: {fontSize: 14},
+        }}
+      />
+      <Tab.Screen
+        name="Albums"
+        component={AlbumsScreen}
+        options={{
+          tabBarIcon: () => <Icon name="headset" size={30} />,
+          tabBarLabelStyle: {fontSize: 14},
+        }}
+      />
     </Tab.Navigator>
   );
 };
