@@ -2,6 +2,7 @@ import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import ArtistsScreen from './screens/artists/Artists.container';
+import ArtistAlbumsScreen from './screens/artist-albums/ArtistAlbums.container';
 import AlbumsScreen from './screens/albums/Albums';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -28,6 +29,7 @@ const App = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen name="Artists" component={ArtistsScreen} />
+        <Stack.Screen name="ArtistAlbums" component={ArtistAlbumsScreen} />
         <Stack.Screen name="Albums" component={AlbumsScreen} />
       </Stack.Navigator>
     </NavigationContainer>

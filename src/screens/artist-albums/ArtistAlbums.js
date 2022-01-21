@@ -4,42 +4,46 @@ import {
   StyleSheet,
   Text,
   SafeAreaView,
-  TextInput,
   FlatList,
   View,
   ActivityIndicator,
   TouchableWithoutFeedback,
+  Image,
 } from 'react-native';
 
-const ArtistsScreen = ({
-  artistInfo,
-  searchInputValue,
-  setInputValue,
-  isArtistsLoaging,
+const ArtistAlbumsScreen = ({
+  artistAlbumsList,
+  isAlbumsLoading,
   navigation,
 }) => {
   const renderItem = ({item}) => (
-    <TouchableWithoutFeedback onPress={() => navigation.navigate('ArtistAlbums', item.artistId)}>
+    <TouchableWithoutFeedback
+      onPress={() => navigation.navigate('AlbumTracks')}>
       <View style={styles.item}>
-        <Text style={styles.title}>{item.artistName}</Text>
-        <Text style={styles.title}>{item.primaryGenreName}</Text>
+        <View>
+          <Image
+            style={styles.tinyLogo}
+            source={{
+              uri: item.artworkUrl60 || '',
+            }}
+          />
+        </View>
+        <View style={{flex: 1, marginLeft: 6}}>
+          <Text style={styles.title}>{item.collectionName}</Text>
+          <Text style={styles.title}>{item.artistName}</Text>
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );
 
   return (
     <SafeAreaView style={styles.root}>
-      <TextInput
-        style={styles.input}
-        value={searchInputValue}
-        onChangeText={setInputValue}
-      />
       <FlatList
-        data={artistInfo}
+        data={artistAlbumsList}
         renderItem={renderItem}
-        keyExtractor={item => item.trackId}
+        keyExtractor={item => item.collectionId}
       />
-       {isArtistsLoaging && (
+      {isAlbumsLoading && (
         <View style={styles.loading_container}>
           <ActivityIndicator style={styles.loading} color="#ffffff" size="large" />
         </View>
@@ -53,23 +57,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#c4c4c4',
     height: '100%',
   },
-  input: {
-    backgroundColor: '#ffffff',
-    margin: 8,
-    marginBottom: 0,
-    borderWidth: 1,
-    padding: 10,
-    fontSize: 20,
-  },
   item: {
     backgroundColor: '#ffffff',
     padding: 10,
     marginHorizontal: 8,
     marginBottom: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   title: {
     fontSize: 20,
     color: '#000000',
+  },
+  tinyLogo: {
+    width: 60,
+    height: 60,
   },
   loading_container: {
     width: '100%',
@@ -82,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ArtistsScreen;
+export default ArtistAlbumsScreen;
