@@ -33,6 +33,7 @@ const ArtistsScreen = ({
         style={styles.input}
         value={searchInputValue}
         onChangeText={setInputValue}
+        placeholder="Search Artist"
       />
       <FlatList
         data={artistInfo}

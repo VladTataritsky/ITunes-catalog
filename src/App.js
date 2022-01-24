@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import ArtistsScreen from './screens/artists/Artists.container';
 import ArtistAlbumsScreen from './screens/artist-albums/ArtistAlbums.container';
 import AlbumTracksScreen from './screens/album-tracks/AlbumTracks.container';
-import AlbumsScreen from './screens/albums/Albums';
+import AlbumsScreen from './screens/albums/Albums.container';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';

@@ -1,23 +1,23 @@
 import React, {useEffect, useState, useRef} from 'react';
-import ArtistsScreen from './Artists';
+import AlbumsScreen from './Albums';
 
-const ArtistsScreenContainer = ({navigation}) => {
-  const [artistInfo, setArtistInfo] = useState([]);
+const AlbumsScreenContainer = ({navigation}) => {
+  const [albumsInfo, setAlbumsInfo] = useState([]);
   const [searchInputValue, setInputValue] = useState('');
-  const [isArtistsLoaging, setArtistsLoading] = useState(false);
+  const [isAlbumsLoading, setAlbumsLoading] = useState(false);
   let timer = useRef(null);
 
-  const fetchArtists = async () => {
-    setArtistsLoading(true);
+  const fetchAlbums = async () => {
+    setAlbumsLoading(true);
     try {
-      const url = `https://itunes.apple.com/search?term=${searchInputValue}&entity=musicArtist`;
+      const url = `https://itunes.apple.com/search?term=${searchInputValue}&entity=album`;
       let response = await fetch(url);
       const json = await response.json();
-      setArtistInfo(json.results);
+      setAlbumsInfo(json.results);
       setArtistsLoading(false);
     } catch (err) {
       console.log(err.message);
-      setArtistsLoading(false);
+      setAlbumsLoading(false);
     }
   };
 
@@ -29,18 +29,18 @@ const ArtistsScreenContainer = ({navigation}) => {
   };
 
   useEffect(() => {
-    debounce(fetchArtists, 1000);
+    debounce(fetchAlbums, 1000);
   }, [searchInputValue]);
 
   return (
-    <ArtistsScreen
-      artistInfo={artistInfo}
+    <AlbumsScreen
+      albumsInfo={albumsInfo}
       searchInputValue={searchInputValue}
       setInputValue={setInputValue}
-      isArtistsLoaging={isArtistsLoaging}
+      isAlbumsLoading={isAlbumsLoading}
       navigation={navigation}
     />
   );
 };
 
-export default ArtistsScreenContainer;
+export default AlbumsScreenContainer;
