@@ -7,18 +7,15 @@ import {
   FlatList,
   View,
   ActivityIndicator,
-  TouchableWithoutFeedback,
   Image,
 } from 'react-native';
 
-const ArtistAlbumsScreen = ({
+const AlbumTracksScreen = ({
   artistAlbumsList,
   isAlbumsLoading,
   navigation,
 }) => {
   const renderItem = ({item}) => (
-    <TouchableWithoutFeedback
-      onPress={() => navigation.navigate('AlbumTracks', {collectionId: item.collectionId, collectionName: item.collectionName})}>
       <View style={styles.item}>
         <View>
           <Image
@@ -29,11 +26,10 @@ const ArtistAlbumsScreen = ({
           />
         </View>
         <View style={{flex: 1, marginLeft: 6}}>
-          <Text style={styles.title}>{item.collectionName}</Text>
+          <Text style={styles.title}>{item.trackName || ''}</Text>
           <Text style={styles.title}>{item.artistName}</Text>
         </View>
       </View>
-    </TouchableWithoutFeedback>
   );
 
   return (
@@ -84,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ArtistAlbumsScreen;
+export default AlbumTracksScreen;

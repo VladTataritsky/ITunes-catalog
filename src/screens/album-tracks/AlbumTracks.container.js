@@ -1,22 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import ArtistAlbums from './ArtistAlbums';
+import ArtistAlbums from './AlbumTracks';
 
-const ArtistAlbumsScreenContainer = ({
-  navigation,
-  route: {
-    params: {artistId, artistName},
-  },
-}) => {
+const AlbumTracksScreenContainer = ({navigation, route: {params: {collectionId, collectionName}}}) => {
   const [artistAlbumsList, setArtistAlbumsList] = useState([]);
   const [isAlbumsLoading, setAlbumsLoading] = useState(false);
 
   const fetchArtistAlbums = async () => {
     setAlbumsLoading(true);
     try {
-      const url = `https://itunes.apple.com/lookup?id=${artistId}&entity=album`;
+      const url = `https://itunes.apple.com/lookup?id=${collectionId}&entity=song`;
       let response = await fetch(url);
       const {results} = await response.json();
-      results.shift();
+      results.shift()
       setArtistAlbumsList(results);
       setAlbumsLoading(false);
     } catch (err) {
@@ -27,11 +22,11 @@ const ArtistAlbumsScreenContainer = ({
 
   useEffect(() => {
     fetchArtistAlbums();
-  }, [artistId]);
+  }, [collectionId]);
 
   useEffect(() => {
-    navigation.setOptions({title: `${artistName}'s albums`});
-  }, [artistName, navigation]);
+    navigation.setOptions({title: `${collectionName}'s tracks`});
+  }, [collectionName, navigation]);
 
   return (
     <ArtistAlbums
@@ -42,4 +37,4 @@ const ArtistAlbumsScreenContainer = ({
   );
 };
 
-export default ArtistAlbumsScreenContainer;
+export default AlbumTracksScreenContainer;

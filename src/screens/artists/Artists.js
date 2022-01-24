@@ -19,7 +19,7 @@ const ArtistsScreen = ({
   navigation,
 }) => {
   const renderItem = ({item}) => (
-    <TouchableWithoutFeedback onPress={() => navigation.navigate('ArtistAlbums', item.artistId)}>
+    <TouchableWithoutFeedback onPress={() => navigation.navigate('ArtistAlbums', {artistId : item.artistId, artistName: item.artistName})}>
       <View style={styles.item}>
         <Text style={styles.title}>{item.artistName}</Text>
         <Text style={styles.title}>{item.primaryGenreName}</Text>
